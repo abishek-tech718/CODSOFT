@@ -33,7 +33,7 @@ public class NumberGame {
                 roundsWon++;
                 System.out.println("✔ You guessed it in " + attemptsUsed + " attempt(s)!");
             } else {
-                System.out.println("Better luck next round!");
+                System.out.println("✘ Better luck next round!");
             }
 
             displayScore(roundsPlayed, roundsWon, totalAttempts);
