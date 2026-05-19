@@ -56,7 +56,6 @@ public class NumberGame {
     }
 
     static int[] playRound() {
-        // Pick range
         System.out.print("Enter range start (default 1): ");
         int rangeStart = readIntOrDefault(1);
 

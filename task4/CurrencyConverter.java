@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class CurrencyConverter {
 
-    // Exchange rates relative to USD (base currency)
     private static final Map<String, Double> exchangeRates = new HashMap<>();
 
     static {
@@ -22,7 +21,6 @@ public class CurrencyConverter {
         exchangeRates.put("BRL", 4.97);
     }
 
-    // Currency symbols
     private static final Map<String, String> currencySymbols = new HashMap<>();
 
     static {
@@ -41,12 +39,10 @@ public class CurrencyConverter {
     }
 
     /**
-     * Converts amount from one currency to another.
-     *
-     * @param amount       the amount to convert
-     * @param baseCurrency the source currency code
-     * @param targetCurrency the destination currency code
-     * @return the converted amount
+     * @param amount      
+     * @param baseCurrency 
+     * @param targetCurrency 
+     * @return 
      */
     public static double convert(double amount, String baseCurrency, String targetCurrency) {
         if (!exchangeRates.containsKey(baseCurrency)) {
@@ -56,21 +52,14 @@ public class CurrencyConverter {
             throw new IllegalArgumentException("Unsupported target currency: " + targetCurrency);
         }
 
-        // Convert base → USD → target
         double inUSD = amount / exchangeRates.get(baseCurrency);
         return inUSD * exchangeRates.get(targetCurrency);
     }
 
-    /**
-     * Returns the exchange rate between two currencies.
-     */
     public static double getExchangeRate(String baseCurrency, String targetCurrency) {
         return exchangeRates.get(targetCurrency) / exchangeRates.get(baseCurrency);
     }
 
-    /**
-     * Displays all available currencies.
-     */
     public static void displayAvailableCurrencies() {
         System.out.println("\n╔══════════════════════════════════╗");
         System.out.println("║      Available Currencies        ║");
@@ -93,10 +82,8 @@ public class CurrencyConverter {
 
         while (continueConverting) {
 
-            // Step 1: Show available currencies
             displayAvailableCurrencies();
 
-            // Step 2: Select base currency
             System.out.print("\nEnter base currency (e.g. USD): ");
             String baseCurrency = scanner.next().toUpperCase().trim();
 
@@ -105,7 +92,6 @@ public class CurrencyConverter {
                 continue;
             }
 
-            // Step 3: Select target currency
             System.out.print("Enter target currency (e.g. INR): ");
             String targetCurrency = scanner.next().toUpperCase().trim();
 
@@ -114,12 +100,11 @@ public class CurrencyConverter {
                 continue;
             }
 
-            // Step 4: Enter amount
             System.out.print("Enter amount in " + baseCurrency + ": ");
 
             if (!scanner.hasNextDouble()) {
                 System.out.println("❌ Invalid amount. Please enter a number.");
-                scanner.next(); // clear invalid input
+                scanner.next(); 
                 continue;
             }
 
@@ -130,7 +115,6 @@ public class CurrencyConverter {
                 continue;
             }
 
-            // Step 5: Convert and display result
             double convertedAmount = convert(amount, baseCurrency, targetCurrency);
             double exchangeRate    = getExchangeRate(baseCurrency, targetCurrency);
 
@@ -144,7 +128,6 @@ public class CurrencyConverter {
                     baseCurrency, exchangeRate, targetCurrency);
             System.out.println("└─────────────────────────────────────────┘");
 
-            // Step 6: Ask to continue
             System.out.print("\nConvert another? (yes/no): ");
             String answer = scanner.next().toLowerCase().trim();
             continueConverting = answer.equals("yes") || answer.equals("y");

@@ -3,7 +3,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-// Represents a single transaction
 class Transaction {
     private String type;
     private double amount;
@@ -50,7 +49,6 @@ class BankAccount {
         return accountHolder;
     }
 
-    // Deposit money into account
     public boolean deposit(double amount) {
         if (amount <= 0) {
             System.out.println("  [ERROR] Deposit amount must be greater than zero.");
@@ -65,7 +63,6 @@ class BankAccount {
         return true;
     }
 
-    // Withdraw money from account
     public boolean withdraw(double amount) {
         if (amount <= 0) {
             System.out.println("  [ERROR] Withdrawal amount must be greater than zero.");
@@ -88,7 +85,6 @@ class BankAccount {
         return true;
     }
 
-    // Check and display balance
     public void checkBalance() {
         System.out.println("\n  +---------------------------------------+");
         System.out.println("  |         ACCOUNT BALANCE               |");
@@ -99,7 +95,6 @@ class BankAccount {
         System.out.println("  +---------------------------------------+");
     }
 
-    // Display last 5 transactions
     public void printTransactionHistory() {
         System.out.println("\n  +-----------------------------------------------+");
         System.out.println("  |           RECENT TRANSACTIONS                 |");
@@ -121,7 +116,6 @@ class BankAccount {
     }
 }
 
-// ATM machine class
 class ATM {
     private BankAccount account;
     private Scanner scanner;
@@ -132,7 +126,6 @@ class ATM {
         this.scanner = new Scanner(System.in);
     }
 
-    // Entry point
     public void start() {
         printWelcomeBanner();
         if (!authenticateUser()) {
@@ -143,7 +136,6 @@ class ATM {
         printGoodbyeMessage();
     }
 
-    // PIN authentication with 3 attempts
     private boolean authenticateUser() {
         int attempts = 3;
         while (attempts > 0) {
@@ -161,7 +153,6 @@ class ATM {
         return false;
     }
 
-    // Main menu loop
     private void showMainMenu() {
         boolean running = true;
         while (running) {
@@ -191,7 +182,6 @@ class ATM {
         }
     }
 
-    // Handle withdraw flow
     private void handleWithdraw() {
         System.out.println("\n  --- WITHDRAW ---");
         System.out.println("  (Multiples of Rs.100 | Max Rs.50,000 per transaction)");
@@ -207,7 +197,6 @@ class ATM {
         }
     }
 
-    // Handle deposit flow
     private void handleDeposit() {
         System.out.println("\n  --- DEPOSIT ---");
         System.out.println("  (Max Rs.2,00,000 per transaction)");
@@ -251,20 +240,16 @@ class ATM {
     }
 }
 
-// Main class — entry point
 public class ATM_Interface {
     public static void main(String[] args) {
-        // Create a bank account with initial balance
         BankAccount userAccount = new BankAccount(
                 "4821123456789012",
                 "Arjun Sharma",
                 25000.00
         );
 
-        // Create the ATM and connect it to the account
         ATM atm = new ATM(userAccount);
 
-        // Start the ATM
         atm.start();
     }
 }

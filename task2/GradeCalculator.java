@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class GradeCalculator {
 
-    // Assign grade based on average percentage
     static String getGrade(double average) {
         if (average >= 90) return "A+";
         else if (average >= 80) return "A";
@@ -14,7 +13,6 @@ public class GradeCalculator {
         else return "F";
     }
 
-    // Get remark for the grade
     static String getRemark(String grade) {
         switch (grade) {
             case "A+": return "Outstanding";
@@ -34,7 +32,6 @@ public class GradeCalculator {
         System.out.println("       STUDENT GRADE CALCULATOR         ");
         System.out.println("========================================");
 
-        // Get number of subjects
         int numSubjects = 0;
         while (true) {
             System.out.print("Enter the number of subjects: ");
@@ -58,7 +55,6 @@ public class GradeCalculator {
         System.out.println("Enter marks obtained (out of 100) for each subject:");
         System.out.println("----------------------------------------------------");
 
-        // Input marks for each subject
         for (int i = 1; i <= numSubjects; i++) {
             System.out.print("Subject " + i + " name: ");
             String name = scanner.nextLine().trim();
@@ -84,14 +80,11 @@ public class GradeCalculator {
             totalMarks += marks;
         }
 
-        // Calculate average percentage
         double averagePercentage = (double) totalMarks / numSubjects;
 
-        // Determine grade and remark
         String grade  = getGrade(averagePercentage);
         String remark = getRemark(grade);
 
-        // Display results
         System.out.println();
         System.out.println("========================================");
         System.out.println("              RESULTS                   ");
@@ -109,7 +102,6 @@ public class GradeCalculator {
         System.out.printf("%-20s %s%n",        "Remark",            remark);
         System.out.println("========================================");
 
-        // Grade scale reference
         System.out.println();
         System.out.println("--- Grade Scale ---");
         System.out.println("A+ : 90 - 100  -> Outstanding");
